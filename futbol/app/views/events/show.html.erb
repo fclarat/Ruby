@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h4>Event</h4>
+
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -7,8 +9,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @event.user_id %>
+  <%= @event.user.name %>
 </p>
+
+<% unless @event.invites.count < 1 %>
+	<%= render 'invites_event' %>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
