@@ -1,0 +1,47 @@
+<h4>invites</h4>
+<table>
+	<thead>
+		<td>
+			nombre
+		</td>
+		<td>
+			mail
+		</td>
+		<td>
+			status
+		</td>
+		<td>
+			accion
+		</td>
+	</thead>
+	<tbody>
+		<% @event.invites.each do |invite| %>
+			<tr>
+				<td>
+					<%= invite.name %>	
+				</td>
+				<td>
+					<%= invite.mail %>	
+				</td>
+				<td>
+					<%= invite.confirmed %>	
+				</td>
+				<td>
+					acciones
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h5>Add invite</h5>
+
+<%= form_for([@event, @event.invites.build] do |f|) %>
+<p>
+	<%= f.label :name %> <br />
+	<%= f.text_field :name %> <br />
+</p>
+<p>
+	<%= f.label :mail %> <br />
+	<%= f.text_field :mail %> <br />
+</p>
