@@ -16,5 +16,21 @@
 	<%= render 'invites_event' %>
 <% end %>
 
+<h5>Add an invite</h5>
+
+<%= form_for([@event, @event.invites.build]) do |f|%>
+    <p>
+        <%= f.label :name %> <br />
+        <%= f.text_field :name %> <br />
+    </p>
+    <p>
+        <%= f.label :mail %> <br />
+        <%= f.text_field :mail %> <br />
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
