@@ -11,7 +11,7 @@ class ExampleMailer < ApplicationMailer
         mb_obj = Mailgun::MessageBuilder.new
 
         # Define the from address.
-        mb_obj.from "mailgun@#{ENV['domain']}"
+        mb_obj.from ENV['email_from']
         
         # Define a to recipient.
         mb_obj.add_recipient :to, @invite.mail
