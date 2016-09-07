@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    resources :invites
+  end
+  
   get 'sessions/create'
 
   get 'sessions/destroy'

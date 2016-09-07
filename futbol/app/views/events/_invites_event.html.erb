@@ -34,14 +34,18 @@
 	</tbody>
 </table>
 
-<h5>Add invite</h5>
+<h5>Add an invite</h5>
 
-<%= form_for([@event, @event.invites.build] do |f|) %>
-<p>
-	<%= f.label :name %> <br />
-	<%= f.text_field :name %> <br />
-</p>
-<p>
-	<%= f.label :mail %> <br />
-	<%= f.text_field :mail %> <br />
-</p>
+<%= form_for([@event, @event.invites.build]) do |f|%>
+	<p>
+		<%= f.label :name %> <br />
+		<%= f.text_field :name %> <br />
+	</p>
+	<p>
+		<%= f.label :mail %> <br />
+		<%= f.text_field :mail %> <br />
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
