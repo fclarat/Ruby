@@ -10,6 +10,10 @@ class InvitesController < ApplicationController
 		redirect_to event_path(@event)
 	end
 
+	def confirm
+		render "invites/status.html.erb"
+	end
+
 	private
 		def invite_params
 			params.require(:invite).permit(:name, :mail)

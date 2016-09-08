@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :invites
+    resources :invites do 
+
+    end
   end
-  
+
+  get 'invite/confirm/:token', to: "invites#confirm"
+  get 'invite/cancel/:token', to: "invites#cancel"
+  get 'invite/postpone/:token', to: "invites#postpone"
+
   get 'sessions/create'
-
   get 'sessions/destroy'
-
   get 'home/show'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
