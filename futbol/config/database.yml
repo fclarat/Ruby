@@ -47,8 +47,16 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: futbol_production
-  username: futbol
-  password: <%= ENV['FUTBOL_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: futbol_production
+#   username: futbol
+#   password: <%= ENV['FUTBOL_DATABASE_PASSWORD'] %>
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  
