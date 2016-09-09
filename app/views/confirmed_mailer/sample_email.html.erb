@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hola <%= @invite.name %></p>
+    <p>
+      Evento: <b><%= @invite.event.name %></b>
+    </p>
+
+    <br>
+
+    <p>
+      Asistiran:
+    </p>
+    <ul>
+      <% @event.invites.select{ |invite| invite.confirmed == Invite::CONFIRMED_STATUS }.each_with_index do|invite, index| %>
+        <li><%= index + 1 %> - <%= invite.name %></li>
+      <% end %>
+    </ul>
+
+    <br>
+
+    <p>
+      No asistiran:
+      <ul>
+        <% @event.invites.select{ |invite| invite.confirmed == Invite::REJECTED_STATUS }.each_with_index do|invite, index| %>
+          <li><%= index + 1 %> - <%= invite.name %></li>
+        <% end %>
+      </ul>
+    </p>
+
+    <br>
+
+    <p>
+      Sin confirmar:
+      <ul>
+        <% @event
+          .invites.select{ |invite| invite.confirmed == Invite::UNKNOWN_STATUS || invite.confirmed == Invite::POSTPONED_STATUS }
+          .each_with_index do|invite, index| %>
+            <li><%= index + 1 %> - <%= invite.name %></li>
+        <% end %>
+      </ul>
+    </p>
+
+  </body>
+</html>

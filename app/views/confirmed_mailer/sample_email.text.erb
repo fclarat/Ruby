@@ -1,0 +1,19 @@
+Hola <%= @invite.name %>
+Evento: <%= @invite.event.name %>
+
+Asistiran:
+<% @event.invites.select{ |invite| invite.confirmed == Invite::CONFIRMED_STATUS }.each_with_index do|invite, index| %>
+    <%= index + 1 %> - <%= invite.name %>
+<% end %>
+
+No asistiran:
+<% @event.invites.select{ |invite| invite.confirmed == Invite::REJECTED_STATUS }.each_with_index do|invite, index| %>
+  <%= index + 1 %> - <%= invite.name %>
+<% end %>
+
+Sin confirmar:
+<% @event
+  .invites.select{ |invite| invite.confirmed == Invite::UNKNOWN_STATUS || invite.confirmed == Invite::POSTPONED_STATUS }
+  .each_with_index do|invite, index| %>
+    <%= index + 1 %> - <%= invite.name %>
+<% end %>

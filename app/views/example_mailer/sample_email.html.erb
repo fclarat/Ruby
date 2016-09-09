@@ -4,14 +4,31 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @invite.name %></h1>
+    <p>Hola <%= @invite.name %></p>
     <p>
-      Sample mail sent using Mailgun.
+      Se te ha invitado a participar del evento: <b><%= @invite.event.name %></b>
     </p>
 
-    <button>YES</button>
-    <button>NO</button>
-    <button>REMIND ME IN 2 DAYS</button>
+    <br>
+
+    <p>
+      Por favor, indica tu asistencia:
+    </p>
+
+    <a href="<%= url_for(host: 'localhost:3000',
+                controller: 'invites',
+                action: 'confirm',
+                token: @invite.token) %>"><button>Asistire</button></a>
+                <br><br>
+    <a href="<%= url_for(host: 'localhost:3000',
+                controller: 'invites',
+                action: 'reject',
+                token: @invite.token) %>"><button>No Asistire</button></a>
+                <br><br>
+    <a href="<%= url_for(host: 'localhost:3000',
+                controller: 'invites',
+                action: 'postpone',
+                token: @invite.token) %>"><button>Recordarme en 2 dias</button></a>
 
   </body>
 </html>

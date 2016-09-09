@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>rubyfutbol</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div>
+      <p id="notice"><%= notice %></p>
+      <p>
+        Has <u>rechazado</u> la invitacion al evento: <b><%= @invite.event.name %></b>
+      </p>
+      <p>
+        Muchas gracias!
+      </p>
+    </div>
+  </body>
+</html>
