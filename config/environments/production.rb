@@ -93,6 +93,6 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
   # ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.delivery_method = :mailjet_api
+  # ActionMailer::Base.delivery_method = :mailjet_api
   # config.action_mailer.delivery_method = :mailjet_api
 end
