@@ -4,7 +4,7 @@ class ExampleMailer < ApplicationMailer
     def sample_email(invite)
         @invite = invite
 
-        mail(to: @invite.mail, subject: 'Sample Email')
+        mail(to: @invite.mail, from: ENV['EMAIL_FROM'], subject: 'Sample Email')
 
         # # First, instantiate the Mailgun Client with your API key
         # mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
