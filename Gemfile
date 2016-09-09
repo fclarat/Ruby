@@ -31,6 +31,7 @@ gem 'mailgun-ruby', require: 'mailgun'
 gem 'delayed_job_active_record'
 gem 'has_secure_token'
 gem 'mailjet'
+gem 'rest-client', '~>1.6.9'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

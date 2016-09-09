@@ -4,7 +4,17 @@ class ExampleMailer < ApplicationMailer
     def sample_email(invite)
         @invite = invite
 
-        mail(from: ENV['MAILJET_DEFAULT_FROM'], to: @invite.mail, subject: 'Sample Email')
+        Mailjet::Send.create(
+            from_email: ENV['MAILJET_DEFAULT_FROM'],
+            from_name: "Mailjet Pilot",
+            subject: "Your email flight plan!",
+            text_part: "Dear passenger, welcome to Mailjet! May the delivery force be with you!",
+            html_part: render_to_string('example_mailer/sample_email').to_str,
+            recipients: [{ 'Email'=> @invite.mail}])
+
+
+        # mail(from: ENV['MAILJET_DEFAULT_FROM'], to: @invite.mail, subject: 'Sample Email')
+        # Mailjet::MessageDelivery.create(from: ENV['MAILJET_DEFAULT_FROM'], to: @invite.mail, subject: "Mailjet is awesome", text: "Yes, it is!")
 
         # # First, instantiate the Mailgun Client with your API key
         # mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']

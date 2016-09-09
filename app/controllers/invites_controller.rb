@@ -17,7 +17,7 @@ class InvitesController < ApplicationController
 
         if @invite.save
             # ExampleMailer.delay.sample_email(@invite)
-            ExampleMailer.sample_email(@invite).deliver_now!
+            ExampleMailer.sample_email(@invite).deliver_now
         end
 
         redirect_to event_path(@event)
