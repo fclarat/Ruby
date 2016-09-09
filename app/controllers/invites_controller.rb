@@ -2,15 +2,6 @@ class InvitesController < ApplicationController
     before_action :set_invite, only: [:show]
     before_action :set_invite_by_token, only: [:confirm, :reject, :postpone]
 
-    def mailjet
-        send_file(
-            "#{Rails.root}/public/file.txt",
-            filename: "5c0d0490a2ae6fd3fb7d1ea6f1bbf000.txt",
-            type: "text/plain"
-        )
-        # send_file '/assets/data/file.txt', :type=>'text/plain', :x_sendfile=>true
-    end
-
     def create
         @event = Event.find(params[:event_id])
         @invite = @event.invites.create(Hash["name" => invite_params['name'], "mail" => invite_params['mail'], "confirmed" => 0])
