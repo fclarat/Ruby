@@ -7,11 +7,11 @@ class ExampleMailer < ApplicationMailer
         # mail(to: @invite.mail, subject: 'Sample Email')
 
         # First, instantiate the Mailgun Client with your API key
-        mg_client = Mailgun::Client.new ENV['api_key']
+        mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
         mb_obj = Mailgun::MessageBuilder.new
 
         # Define the from address.
-        mb_obj.from ENV['email_from']
+        mb_obj.from ENV['EMAIL_FROM']
         
         # Define a to recipient.
         mb_obj.add_recipient :to, @invite.mail
@@ -27,6 +27,6 @@ class ExampleMailer < ApplicationMailer
         # mb_obj.body_text "EMAIL!"
 
         # Finally, send your message using the client
-        mg_client.send_message ENV['domain'], mb_obj
+        mg_client.send_message ENV['MAILGUN_DOMAIN'], mb_obj
     end
 end
