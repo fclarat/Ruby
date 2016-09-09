@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :invites do 
-
-    end
+    resources :invites
   end
 
+  resources :invites, only: [:show]
   get 'invite/confirm/:token', to: "invites#confirm"
-  get 'invite/cancel/:token', to: "invites#cancel"
+  get 'invite/reject/:token', to: "invites#reject"
   get 'invite/postpone/:token', to: "invites#postpone"
 
   get 'sessions/create'
