@@ -30,6 +30,7 @@ gem "figaro"
 gem 'mailgun-ruby', require: 'mailgun'
 gem 'delayed_job_active_record'
 gem 'has_secure_token'
+gem 'mailjet'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

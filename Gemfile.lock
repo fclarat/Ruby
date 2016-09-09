@@ -84,6 +84,10 @@ GEM
     mailgun-ruby (1.1.0)
       json (~> 1.8)
       rest-client (~> 1.6)
+    mailjet (1.4.10)
+      activesupport (>= 3.1.0)
+      rack (>= 1.4.0)
+      rest-client
     materialize-sass (0.97.7)
       sass (~> 3.3)
     mime-types (3.1)
@@ -203,6 +207,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mailgun-ruby
+  mailjet
   materialize-sass
   mysql2 (>= 0.3.13, < 0.5)
   omniauth-facebook
