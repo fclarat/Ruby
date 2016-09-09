@@ -19,35 +19,32 @@ class InvitesController < ApplicationController
     end
 
     def confirm
-        respond_to do |format|
-            @invite.confirmed = Invite::CONFIRMED_STATUS
-            if @invite.save
-                format.html { redirect_to @invite, notice: 'Invite was successfully confirmed.' }
-            else
-                format.json { render json: @invite.errors, status: :unprocessable_entity }
+        @invite.confirmed = Invite::CONFIRMED_STATUS
+        if @invite.save
+            @invite.event.invites.each do|invite|
+                ConfirmedMailer.sample_email(invite).deliver_later
             end
+            render :confirmed, layout: false
         end
     end
 
     def reject
-        respond_to do |format|
-            @invite.confirmed = Invite::REJECTED_STATUS
-            if @invite.save
-                format.html { redirect_to @invite, notice: 'Invite was successfully rejected.' }
-            else
-                format.json { render json: @invite.errors, status: :unprocessable_entity }
+        @invite.confirmed = Invite::REJECTED_STATUS
+        if @invite.save
+            @invite.event.invites.each do|invite|
+                ConfirmedMailer.sample_email(invite).deliver_later
             end
+            render :rejected, layout: false
         end
     end
 
     def postpone
-        respond_to do |format|
-            @invite.confirmed = Invite::POSTPONED_STATUS
-            if @invite.save
-                format.html { redirect_to @invite, notice: 'Invite was successfully postponed.' }
-            else
-                format.json { render json: @invite.errors, status: :unprocessable_entity }
+        @invite.confirmed = Invite::POSTPONED_STATUS
+        if @invite.save
+            @invite.event.invites.each do|invite|
+                ConfirmedMailer.sample_email(invite).deliver_later
             end
+            render :postponed, layout: false
         end
     end
 

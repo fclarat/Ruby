@@ -3,8 +3,7 @@ class ExampleMailer < ApplicationMailer
 
     def sample_email(invite)
         @invite = invite
-
-        mail(from: ENV['EMAIL_FROM'], to: @invite.mail, subject: 'Sample Email')
+        mail(from: ENV['EMAIL_FROM'], to: @invite.mail, subject: "Se ha invitado al evento #{@invite.event.name}")
 
         # Mailjet::Send.create(
         #     from_email: ENV['MAILJET_DEFAULT_FROM'],

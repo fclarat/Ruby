@@ -1,5 +1,21 @@
-Hi <%= @invite.name %>
-Sample mail sent using Mailgun.
-link yes
-link no
-link reminder
+Hola <%= @invite.name %>
+Se te ha invitado a participar del evento: <%= @invite.event.name %>
+Por favor, indica tu asistencia:
+
+Para indicar que asistiras, por favor abre el sig. link:
+<%= url_for(host: 'localhost:3000',
+                controller: 'invites',
+                action: 'confirm',
+                token: @invite.token) %>
+
+Para indicar que No asistiras, por favor abre el sig. link:
+<%= url_for(host: 'localhost:3000',
+                controller: 'invites',
+                action: 'reject',
+                token: @invite.token) %>
+
+Para recordarte del evento en 2 días, por favor abre el sig. link:
+<%= url_for(host: 'localhost:3000',
+                controller: 'invites',
+                action: 'postpone',
+                token: @invite.token) %>
