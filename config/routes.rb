@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :invites
   end
 
+  get '5c0d0490a2ae6fd3fb7d1ea6f1bbf000.txt', to: 'invites#mailjet'
+
   resources :invites, only: [:show]
   get 'invite/confirm/:token', to: "invites#confirm"
   get 'invite/reject/:token', to: "invites#reject"
