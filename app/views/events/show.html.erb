@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h5 id="notice"><%= notice %></h5>
 
 <h4>Event</h4>
 
@@ -33,4 +33,6 @@
 <% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path %> |
+ <a href="<%=url_for(host: ENV['URL_FOR_HOST'], controller: 'events', action: 'confirm') %>">confirm </a>
+ 

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'invite/reject/:token', to: "invites#reject"
   get 'invite/postpone/:token', to: "invites#postpone"
 
+  get 'events/confirm/:id', to: "events#confirm"
+
+
   get 'sessions/create'
   get 'sessions/destroy'
   get 'home/show'
