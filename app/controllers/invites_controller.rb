@@ -6,11 +6,6 @@ class InvitesController < ApplicationController
         @event = Event.find(params[:event_id])
         @invite = @event.invites.create(Hash["name" => invite_params['name'], "mail" => invite_params['mail'], "confirmed" => 0])
 
-        if @invite.save
-            # ExampleMailer.delay.sample_email(@invite)
-            ExampleMailer.sample_email(@invite).deliver_later
-        end
-
         redirect_to event_path(@event)
     end
 

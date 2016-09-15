@@ -62,6 +62,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def confirm
+    @event = Event.find(params[:id])
+      @event.invites.each do |invite|
+        ExampleMailer.sample_email(invite).deliver_later
+      end
+        flash[:notice] = 'Evento confirmado, mails preparados'
+        redirect_to event_path(@event)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

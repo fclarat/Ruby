@@ -25,10 +25,10 @@
                 action: 'reject',
                 token: @invite.token) %>"><button>No Asistire</button></a>
                 <br><br>
-    <a href="<%= url_for(host: ENV['URL_FOR_HOST'],
-                controller: 'invites',
+    <%#  <a href="<%= url_for(host: ENV['URL_FOR_HOST'],
+                contro=begin=endller: 'invites',
                 action: 'postpone',
-                token: @invite.token) %>"><button>Recordarme en 2 dias</button></a>
+                token: @invite.token) "><button>Recordarme en 2 dias</button></a> %>
 
   </body>
 </html>
