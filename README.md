@@ -6,3 +6,6 @@
 * [https://mailgun.com/app/dashboard](https://mailgun.com/app/dashboard)
 * [https://coderwall.com/p/u56rra/ruby-on-rails-user-signup-email-confirmation-tutorial](https://coderwall.com/p/u56rra/ruby-on-rails-user-signup-email-confirmation-tutorial)
 * [https://coderwall.com/p/kb97gg/secure-tokens-from-rails-5-to-rails-4-x-and-3-x](https://coderwall.com/p/kb97gg/secure-tokens-from-rails-5-to-rails-4-x-and-3-x)
+* [https://richonrails.com/articles/facebook-authentication-in-ruby-on-rails](https://richonrails.com/articles/facebook-authentication-in-ruby-on-rails)
+* [https://richonrails.com/articles/google-authentication-in-ruby-on-rails](https://richonrails.com/articles/google-authentication-in-ruby-on-rails)
+* [https://richonrails.com/articles/facebook-authentication-in-ruby-on-rails](https://richonrails.com/articles/facebook-authentication-in-ruby-on-rails)
