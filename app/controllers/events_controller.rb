@@ -71,8 +71,23 @@ class EventsController < ApplicationController
         redirect_to event_path(@event)
   end
 
-  def create_guest
+  # GET /events/1/guests/new
+  def new_guest
+    @event = Event.find(params[:event_id])
     render :guest
+  end
+
+  # POST /events/1/guests
+  def create_guest
+    @event = Event.find(params[:event_id])
+    @invite = @event.invites.create(Hash[
+      "name" => guest_params['name'],
+      "mail" => guest_params['mail'],
+      "confirmed" => 1,
+      "receive_emails" => false
+    ])
+    flash[:notice] = "Guest #{ guest_params['name'] } agregado!"
+    redirect_to event_path(@event)
   end
 
   private
@@ -84,5 +99,9 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:name, :user_id)
+    end
+
+    def guest_params
+      params.require(:guest).permit(:name, :mail)
     end
 end
