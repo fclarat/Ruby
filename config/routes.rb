@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get 'events/:id/guest', to: "events#create_guest"
+  post 'events/:id/guest', to: "events#create_guest"
+
+
   resources :events do
     resources :invites
   end
 
+  
   resources :invites, only: [:show]
   get 'invite/confirm/:token', to: "invites#confirm"
   get 'invite/reject/:token', to: "invites#reject"

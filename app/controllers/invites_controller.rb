@@ -16,9 +16,7 @@ class InvitesController < ApplicationController
     def confirm
         @invite.confirmed = Invite::CONFIRMED_STATUS
         if @invite.save
-            @invite.event.invites.each do|invite|
-                ConfirmedMailer.sample_email(invite).deliver_later
-            end
+            send_emails @invite
             render :confirmed, layout: false
         end
     end
@@ -26,21 +24,21 @@ class InvitesController < ApplicationController
     def reject
         @invite.confirmed = Invite::REJECTED_STATUS
         if @invite.save
-            @invite.event.invites.each do|invite|
-                ConfirmedMailer.sample_email(invite).deliver_later
-            end
-            render :rejected, layout: false
+            send_emails @invite
+            render :rejected, layout: false 
         end
     end
 
     def postpone
         @invite.confirmed = Invite::POSTPONED_STATUS
         if @invite.save
-            @invite.event.invites.each do|invite|
-                ConfirmedMailer.sample_email(invite).deliver_later
-            end
+            send_emails @invite
             render :postponed, layout: false
         end
+    end
+
+    def create_guest
+        render :guest
     end
 
     private
@@ -56,4 +54,10 @@ class InvitesController < ApplicationController
         def invite_params
             params.require(:invite).permit(:name, :mail)
         end
+
+        def send_emails(invite)
+              invite.event.invites.where(receive_emails: true).each do |invite|
+                ConfirmedMailer.sample_email(invite).deliver_later
+            end
+        end 
 end

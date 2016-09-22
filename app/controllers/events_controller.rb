@@ -71,6 +71,10 @@ class EventsController < ApplicationController
         redirect_to event_path(@event)
   end
 
+  def create_guest
+    render :guest
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
