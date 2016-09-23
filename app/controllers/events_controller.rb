@@ -24,7 +24,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-
     @event = Event.new(Hash["name" => event_params['name'], "user_id" => current_user.id])
 
     respond_to do |format|
@@ -74,7 +73,6 @@ class EventsController < ApplicationController
   # GET /events/1/guests/new
   def new_guest
     @event = Event.find(params[:event_id])
-    render :guest
   end
 
   # POST /events/1/guests
