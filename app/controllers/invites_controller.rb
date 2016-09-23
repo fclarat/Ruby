@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
     before_action :set_invite, only: [:show]
-    before_action :set_invite_by_token, only: [:confirm, :reject, :postpone]
+    before_action :set_invite_by_token, only: [:confirm, :reject, :postpone, :show_info, :edit_info, :update_info]
 
     def create
         @event = Event.find(params[:event_id])
@@ -14,7 +14,6 @@ class InvitesController < ApplicationController
     end
 
     def show
-        # render "invites/status.html.erb"
     end
 
     def confirm
@@ -41,6 +40,20 @@ class InvitesController < ApplicationController
         end
     end
 
+    def show_info
+    end
+
+    def edit_info
+    end
+
+    def update_info
+        if @invite.update(invite_update_info_params)
+            redirect_to({ action: 'show_info' }, notice: "Se actualizaron los datos.")
+        else
+            render :edit_info
+        end
+    end
+
     private
         # Use callbacks to share common setup or constraints between actions.
         def set_invite
@@ -53,6 +66,10 @@ class InvitesController < ApplicationController
 
         def invite_params
             params.require(:invite).permit(:name, :mail)
+        end
+
+        def invite_update_info_params
+            params.require(:invite).permit(:name, :receive_emails, :confirmed)
         end
 
         def send_emails(invite)

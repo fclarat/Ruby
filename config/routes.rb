@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get 'events/:event_id/guests/new', to: "events#new_guest"
   post 'events/:event_id/guests', to: "events#create_guest"
 
+  get 'invite/info/:token', to: "invites#show_info"
+  get 'invite/personalize/:token', to: "invites#edit_info"
+  patch 'invite/personalize/:token', to: "invites#update_info"
+
   get 'sessions/create'
   get 'sessions/destroy'
   get 'home/show'

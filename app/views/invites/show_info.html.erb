@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h4>Info de tu invitacion</h4>
+
+<p>
+  <strong>Name:</strong>
+  <%= @invite.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @invite.mail %>
+</p>
+
+<p>
+  <strong>Evento:</strong>
+  <%= @invite.event.name %>
+</p>
+
+<p>
+  <strong>Estatus:</strong>
+  <% if @invite.confirmed === 1 %>
+    Asistira
+  <% elsif @invite.confirmed === 2 %>
+    No asistira
+  <% else %>
+    Sin confirmar
+  <% end %>
+</p>
+
+
+<p>
+  <strong>Recibe updates?:</strong>
+  <% if @invite.receive_emails === true %>
+    Si
+  <% else %>
+    No
+  <% end %>
+</p>
+
+<%= link_to 'Editar info', controller: "invites", action: "edit_info", token: @invite.token %>
