@@ -2,14 +2,17 @@ Rails.application.routes.draw do
   resources :events do
     resources :invites
   end
-
+  
   resources :invites, only: [:show]
+
   get 'invite/confirm/:token', to: "invites#confirm"
   get 'invite/reject/:token', to: "invites#reject"
   get 'invite/postpone/:token', to: "invites#postpone"
 
   get 'events/confirm/:id', to: "events#confirm"
 
+  get 'events/:event_id/guests/new', to: "events#new_guest"
+  post 'events/:event_id/guests', to: "events#create_guest"
 
   get 'sessions/create'
   get 'sessions/destroy'

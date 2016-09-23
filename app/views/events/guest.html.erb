@@ -1,0 +1,14 @@
+<div>
+  <p id="notice"><%= notice %></p>
+  <p>
+    Agregar invitado.
+  </p>
+  <br><br>
+  <%= form_tag(controller: "events", action: "create_guest", id: @event.id,method: "post") do %>
+    <%= label_tag(:name, "Nombre del invitado:") %>
+    <%= text_field_tag 'guest[name]', nil, :required => true %>
+    <%= label_tag(:mail, "Email del invitado:") %>
+    <%= email_field 'guest', :mail, :required => true %>
+    <%= submit_tag("Agregar") %>
+  <% end %>
+</div>
