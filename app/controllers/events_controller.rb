@@ -64,11 +64,11 @@ class EventsController < ApplicationController
 
   def confirm
     @event = Event.find(params[:id])
-      @event.invites.each do |invite|
-        ExampleMailer.sample_email(invite).deliver_later
-      end
-        flash[:notice] = 'Evento confirmado, mails preparados'
-        redirect_to event_path(@event)
+    @event.invites.each do |invite|
+      ExampleMailer.sample_email(invite).deliver_later
+    end
+    flash[:notice] = 'Evento confirmado, mails preparados'
+    redirect_to event_path(@event)
   end
 
   # GET /events/1/guests/new
@@ -86,6 +86,7 @@ class EventsController < ApplicationController
       "confirmed" => 1,
       "receive_emails" => false
     ])
+    send_update_emails(@event)
     flash[:notice] = "Guest #{ guest_params['name'] } agregado!"
     redirect_to event_path(@event)
   end
@@ -103,5 +104,11 @@ class EventsController < ApplicationController
 
     def guest_params
       params.require(:guest).permit(:name, :mail)
+    end
+
+    def send_update_emails(event)
+      event.invites.where(receive_emails: true).each do |invite|
+        ConfirmedMailer.sample_email(invite).deliver_later
+      end
     end
 end

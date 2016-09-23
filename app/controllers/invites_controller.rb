@@ -4,8 +4,12 @@ class InvitesController < ApplicationController
 
     def create
         @event = Event.find(params[:event_id])
-        @invite = @event.invites.create(Hash["name" => invite_params['name'], "mail" => invite_params['mail'], "confirmed" => 0])
-
+        @invite = @event.invites.create(Hash[
+            "name" => invite_params['name'],
+            "mail" => invite_params['mail'],
+            "confirmed" => 0,
+            "receive_emails" => true
+        ])
         redirect_to event_path(@event)
     end
 
@@ -35,10 +39,6 @@ class InvitesController < ApplicationController
             send_emails @invite
             render :postponed, layout: false
         end
-    end
-
-    def create_guest
-        render :guest
     end
 
     private
