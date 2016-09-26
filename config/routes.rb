@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'invite/postpone/:token', to: "invites#postpone"
 
   get 'events/confirm/:id', to: "events#confirm"
+  get 'events/duplicate/:id', to: "events#duplicate"
 
   get 'events/:event_id/guests/new', to: "events#new_guest"
   post 'events/:event_id/guests', to: "events#create_guest"

@@ -90,6 +90,19 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  # GET /events/1/duplicate
+  def duplicate
+    event = Event.find(params[:id])
+    new_event = event.dup
+    new_event.save()
+    event.invites.where(invite_type: 'invite').each do |invite|
+      new_invite = invite.dup
+      new_invite.event = new_event
+      new_invite.save
+    end
+    redirect_to event_path(new_event)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
