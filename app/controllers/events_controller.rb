@@ -81,6 +81,7 @@ class EventsController < ApplicationController
     @invite = @event.invites.create(Hash[
       "name" => guest_params['name'],
       "mail" => guest_params['mail'],
+      "type" => 'guest',
       "confirmed" => 1,
       "receive_emails" => false
     ])
