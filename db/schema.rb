@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160926140737) do
     t.datetime "updated_at",                                    null: false
     t.string   "token",          limit: 255
     t.boolean  "receive_emails",             default: true
-    t.string   "type",           limit: 255, default: "invite", null: false
+    t.string   "invite_type",           limit: 255, default: "invite", null: false
   end
 
   add_index "invites", ["event_id"], name: "index_invites_on_event_id", using: :btree
