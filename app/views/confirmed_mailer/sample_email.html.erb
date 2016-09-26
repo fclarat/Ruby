@@ -15,8 +15,8 @@
       Asistiran:
     </p>
     <ul>
-      <% @event.invites.select{ |invite| invite.confirmed == Invite::CONFIRMED_STATUS }.each_with_index do|invite, index| %>
-        <li><%= index + 1 %> - <%= invite.name %></li>
+      <% @event.invites.order("updated_at asc").select{ |invite| invite.confirmed == Invite::CONFIRMED_STATUS }.each_with_index do |invite, index| %>
+        <li><%= index + 1 %>. <%= invite.name %></li>
       <% end %>
     </ul>
 
@@ -25,8 +25,8 @@
     <p>
       No asistiran:
       <ul>
-        <% @event.invites.select{ |invite| invite.confirmed == Invite::REJECTED_STATUS }.each_with_index do|invite, index| %>
-          <li><%= index + 1 %> - <%= invite.name %></li>
+        <% @event.invites.order("updated_at asc").select{ |invite| invite.confirmed == Invite::REJECTED_STATUS }.each_with_index do |invite, index| %>
+          <li><%= index + 1 %>. <%= invite.name %></li>
         <% end %>
       </ul>
     </p>
@@ -36,10 +36,9 @@
     <p>
       Sin confirmar:
       <ul>
-        <% @event
-          .invites.select{ |invite| invite.confirmed == Invite::UNKNOWN_STATUS || invite.confirmed == Invite::POSTPONED_STATUS }
-          .each_with_index do|invite, index| %>
-            <li><%= index + 1 %> - <%= invite.name %></li>
+        <% @event.invites.order("updated_at asc").select{ |invite| invite.confirmed == Invite::UNKNOWN_STATUS || invite.confirmed == Invite::POSTPONED_STATUS }
+          .each_with_index do |invite, index| %>
+            <li><%= index + 1 %>. <%= invite.name %></li>
         <% end %>
       </ul>
     </p>
