@@ -98,6 +98,9 @@ class EventsController < ApplicationController
     event.invites.where(invite_type: 'invite').each do |invite|
       new_invite = invite.dup
       new_invite.event = new_event
+      new_invite.confirmed = Invite::UNKNOWN_STATUS
+      new_invite.receive_emails = true
+      new_invite.regenerate_token
       new_invite.save
     end
     redirect_to event_path(new_event)
