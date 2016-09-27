@@ -36,4 +36,10 @@ Para modificar tu perfil, por favor abre el sig. link:
                 controller: 'invites',
                 action: 'edit_info',
                 token: @invite.token) %>
+
+Para agregar un invitado, por favor abre el sig. link:
+<%= url_for(host: ENV['URL_FOR_HOST'],
+                controller: 'events',
+                action: 'new_guest',
+                event_id: @event.id) %>
 <% end %>

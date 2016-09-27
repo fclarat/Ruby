@@ -65,6 +65,10 @@
                   controller: 'invites',
                   action: 'edit_info',
                   token: @invite.token) %>"><button>Modificar mi perfil</button></a>
+        <a href="<%= url_for(host: ENV['URL_FOR_HOST'],
+                  controller: 'events',
+                  action: 'new_guest',
+                  event_id: @event.id) %>"><button>Agregar invitado</button></a>
     <% end %>
 
   </body>
