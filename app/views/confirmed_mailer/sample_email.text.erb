@@ -17,3 +17,23 @@ Sin confirmar:
   .each_with_index do|invite, index| %>
     <%= index + 1 %> - <%= invite.name %>
 <% end %>
+
+<% if @invite.confirmed == Invite::UNKNOWN_STATUS %>
+Para indicar que asistiras, por favor abre el sig. link:
+<%= url_for(host: ENV['URL_FOR_HOST'],
+                controller: 'invites',
+                action: 'confirm',
+                token: @invite.token) %>
+
+Para indicar que No asistiras, por favor abre el sig. link:
+<%= url_for(host: ENV['URL_FOR_HOST'],
+                controller: 'invites',
+                action: 'reject',
+                token: @invite.token) %>
+<% else %>
+Para modificar tu perfil, por favor abre el sig. link:
+<%= url_for(host: ENV['URL_FOR_HOST'],
+                controller: 'invites',
+                action: 'edit_info',
+                token: @invite.token) %>
+<% end %>
