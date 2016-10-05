@@ -16,6 +16,8 @@
 	<%= render 'invites_event' %>
 <% end %>
 
+<br><br>
+
 <h5>Add an invite</h5>
 
 <%= form_for([@event, @event.invites.build]) do |f|%>
@@ -28,12 +30,17 @@
         <%= f.text_field :mail %> <br />
     </p>
     <p>
+        <%= check_box_tag(:send_email) %>
+        <%= label_tag(:send_email, "Enviar email?") %>
+    </p>
+    <p>
         <%= f.submit %>
     </p>
 <% end %>
+
+<br><br>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %> |
  <a href="<%=url_for(host: ENV['URL_FOR_HOST'], controller: 'events', action: 'confirm') %>">confirm </a> |
  <a href="<%=url_for(host: ENV['URL_FOR_HOST'], controller: 'events', action: 'duplicate') %>">duplicate</a>
- 

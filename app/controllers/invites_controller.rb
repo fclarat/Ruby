@@ -10,6 +10,10 @@ class InvitesController < ApplicationController
             "confirmed" => 0,
             "receive_emails" => true
         ])
+        if (params[:send_email])
+            ExampleMailer.sample_email(@invite).deliver_later
+        end
+        flash[:notice] = 'Invite agregado'
         redirect_to event_path(@event)
     end
 
