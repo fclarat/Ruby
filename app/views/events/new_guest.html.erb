@@ -7,7 +7,7 @@
   <%= form_tag(controller: "events", action: "create_guest", id: @event.id,method: "post") do %>
     <%= label_tag(:name, "Nombre del invitado (obligatorio):") %>
     <%= text_field_tag 'guest[name]', nil, :required => true %>
-    <%= label_tag(:mail, "Email del invitado (no es obligatorio):") %>
+    <%= label_tag(:mail, "Email del invitado (opcional):") %>
     <%= email_field 'guest', :mail, :required => false %>
     <%= submit_tag("Agregar") %>
   <% end %>
