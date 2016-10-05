@@ -69,7 +69,8 @@ class InvitesController < ApplicationController
         end
 
         def invite_update_info_params
-            params.require(:invite).permit(:name, :receive_emails, :confirmed)
+            # params.require(:invite).permit(:name, :receive_emails, :confirmed)
+            params.require(:invite).permit(:name, :receive_emails)
         end
 
         def send_emails(invite)
